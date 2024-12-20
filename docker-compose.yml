@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: app
     build:
       context: .
       target: ${TARGET:-development}
@@ -11,3 +12,35 @@ services:
       FLASK_APP: src/app/app.py
       FLASK_ENV: development
     command: poetry run start
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - poc_network
+
+  mysql:
+    image: mysql:9.1
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-poc}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-poc}
+      MYSQL_USER: ${MYSQL_USER:-poc}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-poc}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - poc_network
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
+
+networks:
+  poc_network:
+    driver: bridge
