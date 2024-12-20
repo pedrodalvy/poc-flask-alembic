@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "poc-flask-alembic"
+version = "0.1.0"
+description = "POC that runs Alembic migrations at startup and validates API initialization with Flask."
+authors = ["Pedro Dalvy <pedrodalvy@outlook.com>"]
+readme = "README.md"
+
+packages = [{ include = "src" }]
+
+[tool.poetry.scripts]
+start = "src.app:main"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+flask = "^3.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

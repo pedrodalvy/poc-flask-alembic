@@ -1,0 +1,53 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.env.*
+
+# Flask and development-related files
+instance/
+*.log
+*.sqlite3
+*.db
+
+# Pytest
+.pytest_cache/
+.cache/
+*.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+.coverage.*
+
+# Jupyter Notebooks (se aplicável)
+.ipynb_checkpoints/
+
+# Distribution / Packaging
+build/
+dist/
+*.egg-info/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.bak
+
+# Docker
+*.pid
+logs/
+
+# Alembic migrations
+migrations/
