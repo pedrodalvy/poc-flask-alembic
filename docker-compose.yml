@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      target: ${TARGET:-development}
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_APP: src/app/app.py
+      FLASK_ENV: development
+    command: poetry run start
