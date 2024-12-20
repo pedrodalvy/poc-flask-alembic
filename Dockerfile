@@ -32,7 +32,7 @@ COPY pyproject.toml poetry.lock /app/
 
 RUN --mount=type=cache,target=/root/.cache/pypoetry poetry install
 
-COPY src /app/src
+COPY . /app
 
 RUN groupadd -r devgroup && useradd -r -g devgroup devuser && \
     chown -R devuser:devgroup /app

@@ -5,12 +5,13 @@ services:
       context: .
       target: ${TARGET:-development}
     volumes:
-      - ./src:/app/src
+      - .:/app
     ports:
       - "5000:5000"
     environment:
       FLASK_APP: src/app/app.py
       FLASK_ENV: development
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER:-poc}:${MYSQL_PASSWORD:-poc}@mysql:3306/${MYSQL_DATABASE:-poc}
     command: poetry run start
     depends_on:
       mysql:
