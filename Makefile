@@ -13,4 +13,10 @@ revision:
 migrate:
 	docker compose exec app python -m poetry run alembic upgrade head
 
-.PHONY: up down logs revision migrate
+history:
+	poetry run alembic history
+
+downgrade:
+	docker compose exec app python -m poetry run alembic downgrade "$(revision)"
+
+.PHONY: up down logs revision migrate history downgrade
