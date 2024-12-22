@@ -1,8 +1,8 @@
 up:
-	docker compose up -d
+	docker compose up -d --build
 
 down:
-	docker compose down
+	docker compose down --remove-orphans
 
 logs:
 	docker compose logs -f app
